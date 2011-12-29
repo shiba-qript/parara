@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8" />
+	<title>パララックステスト</title>
+	<style>
+		body,html{
+			margin:0;
+			padding:0;
+		}
+		#wrap{
+			position:relative;
+			height:4000px;
+		}
+		#sample{
+			position:fixed;
+			top:50%;
+			left:50%;
+			margin:-45px 0 0 -45px;
+			display:block;
+			width:90px;
+			height:90px;
+			background-image:url(sample.jpg);
+			background-repeat:no-repeat;
+		}
+		.pos1{
+			background-position:center 0;
+		}
+		.pos2{
+			background-position:center -90px;
+		}
+		.pos3{
+			background-position:center -180px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="sample" class="pos1"></div>
+	</div>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var step = 200;
+		var $target = $('#sample');
+		$(window).scroll(function(){
+			var _class = new String;
+			var pos = $(window).scrollTop();
+			var x = parseInt(pos/step);
+			var y = x%3;
+			
+			if(y==1){
+				_class = 'pos1';
+			}else if(y==2){
+				_class = 'pos2';
+			}else if(y==0){
+				_class = 'pos3';
+			}
+			change(_class)
+		});
+		
+		var change = function(_class){
+			$target.removeAttr('class').addClass(_class);
+		};
+	});
+	</script>
+</body>
+</html>
